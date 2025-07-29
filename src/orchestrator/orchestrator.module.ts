@@ -3,6 +3,7 @@ import { OrchestratorService } from './orchestrator/orchestrator.service';
 import { DependencyResolverService } from './dependency-resolver/dependency-resolver.service';
 
 @Module({
-  providers: [OrchestratorService, DependencyResolverService]
+  providers: [OrchestratorService, DependencyResolverService],
+  exports: [OrchestratorService],
 })
 export class OrchestratorModule {}

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Task } from 'src/tasks/base/task.abstract';
-import toposort from 'toposort';
+import * as toposort from 'toposort';
 
 @Injectable()
 export class DependencyResolverService {
