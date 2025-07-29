@@ -1,5 +1,4 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { normalize } from 'path';
 import { Subject } from 'rxjs';
 import { Task } from 'src/tasks/base/task.abstract';
 import { DependencyResolverService } from '../dependency-resolver/dependency-resolver.service';
@@ -8,7 +7,7 @@ import { TaskA, TaskB, TaskC, TaskD, TaskE } from '../../tasks/implementations/i
 
 @Injectable()
 export class OrchestratorService implements OnModuleInit{
-    private taskMap = new Map<string, Task>();
+    private tasksMap = new Map<string, Task>();
     private results = new Map<string, any>(); //todo add result type
     private completedTasks = new Set<string>();
     private subject$ = new Subject<string>();
@@ -26,7 +25,7 @@ export class OrchestratorService implements OnModuleInit{
 
     private registerTasks(tasks: Task[]) {
         for(const task of tasks) {
-            this.taskMap.set(task.name, task);
+            this.tasksMap.set(task.name, task);
         }
     }
 
@@ -57,7 +56,7 @@ export class OrchestratorService implements OnModuleInit{
         }
 
         for(const taskName of this.executionOrder) {
-            const task = this.taskMap.get(taskName);
+            const task = this.tasksMap.get(taskName);
             if (task?.dependencies.length === 0) {
                 this.subject$.next(taskName);
             }
