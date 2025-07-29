@@ -1,5 +1,11 @@
 export abstract class Task {
-    abstract readonly name: string;
-    abstract readonly dependencies: string[];
-    abstract execute(inputs: Record<string, any>): Promise<any>
-;}
+  abstract name: string;
+  abstract dependencies: string[];
+
+  /**
+   * Executes the task.
+   * @param inputs results from dependent tasks
+   * @returns result object or value
+   */
+  abstract execute(inputs: any[]): Promise<any>;
+}

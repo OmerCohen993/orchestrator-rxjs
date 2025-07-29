@@ -1,12 +1,12 @@
 import { Task } from '../base/task.abstract';
 
 export class TaskB extends Task {
-  readonly name = 'b';
-  readonly dependencies = ['a'];
+  name = 'b';
+  dependencies = ['a'];
 
-  async execute(inputs: Record<string, any>): Promise<string> {
-    console.log('Executing Task B with input:', inputs['a']);
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    return 'Result of B';
+  async execute([aResult]: any[]): Promise<string> {
+    console.log('🚀 Executing Task B with input:', aResult);
+    await new Promise((res) => setTimeout(res, 100));
+    return 'Result from B';
   }
 }

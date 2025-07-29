@@ -4,9 +4,10 @@ export class TaskC extends Task {
   readonly name = 'c';
   readonly dependencies = ['a'];
 
-  async execute(inputs: Record<string, any>): Promise<string> {
-    console.log('Executing Task C with input:', inputs['a']);
-    await new Promise((resolve) => setTimeout(resolve, 50));
-    return 'Result of C';
+  async execute([aResult]: any[]): Promise<string> {
+    console.log('🚀 Executing Task C with input:', aResult);
+    await new Promise((res) => setTimeout(res, 50));
+    return 'Result from C';
   }
 }
+
